@@ -1,0 +1,57 @@
+@use './variables' as *;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $color-dark;
+  color: $color-light;
+  font-family: $font-main;
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-primary;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      color: $color-light;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: $color-dark;
+      padding: 1rem;
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+    }
+  }
+
+  &__toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+}

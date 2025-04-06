@@ -1,0 +1,72 @@
+@use './variables' as *;
+
+
+.service-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: visible; // 👈 Esto permite que la imagen sobresalga
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+    }
+
+    .card-image-wrapper {
+        position: absolute;
+        top: -90px; // ⬆️ Hace que la imagen sobresalga más
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px; // ⬆️ Más grande
+        z-index: 2;
+        overflow: visible;
+
+        .card-image {
+            width: 105%;
+            height: auto;
+
+        }
+    }
+
+    .card-content {
+        padding: 0 1.5rem;
+
+        h3 {
+            font-size: 1.4rem;
+            color: #1f1f1f;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-button {
+            background-color: $color-primary;
+            color: $color-light;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            margin: 1rem auto 0; // ⬅ esto lo centra
+
+            &:hover {
+                background-color: $color-accent;
+                color: $color-dark;
+            }
+        }
+
+    }
+}
