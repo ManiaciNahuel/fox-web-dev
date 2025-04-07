@@ -102,6 +102,7 @@
 
 @media (max-width: 480px) {
   .about-section {
+    padding: 4rem 0rem;
     height: 100vh; // 👈 Asegura que use el alto completo
     display: flex;
     align-items: center;
