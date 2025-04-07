@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
-import Porfolio from './components/Porfolio';
 import Contact from './components/Contact';
 import './styles/main.scss';
 
@@ -17,7 +16,6 @@ function App() {
         <About />
         <Services />
         <Contact />
-        <Porfolio />
       </div>
     </>
   );

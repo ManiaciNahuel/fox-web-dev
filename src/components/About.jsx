@@ -16,7 +16,7 @@ const About = () => {
   }, []);
 
   return (
-    <section ref={ref} className={`section about-section ${visible ? 'visible' : ''}`}>
+    <section id='about' ref={ref} className={`section about-section ${visible ? 'visible' : ''}`}>
       <div className="about-wrapper">
         <div className="about-content">
           <h2>¿Quiénes somos?</h2>

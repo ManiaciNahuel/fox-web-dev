@@ -1,57 +1,89 @@
 @use './variables' as *;
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: $color-dark;
   color: $color-light;
-  font-family: $font-main;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-  &__logo {
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  .navbar__logo {
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    color: $color-primary;
+
+    span {
+      margin-left: 0.5rem;
+      white-space: nowrap;
+    }
   }
 
-  &__links {
+  .navbar__links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 
     a {
-      color: $color-light;
       text-decoration: none;
-      transition: color 0.3s;
+      color: $color-light;
+      font-weight: bold;
 
       &:hover {
-        color: $color-primary;
-      }
-    }
-
-    @media (max-width: 768px) {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background-color: $color-dark;
-      padding: 1rem;
-      display: none;
-
-      &.active {
-        display: flex;
+        color: $color-accent;
       }
     }
   }
 
-  &__toggle {
+  .navbar__toggle {
     display: none;
     font-size: 1.8rem;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: $color-light;
+  }
+}
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .navbar {
+    .navbar__links {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 1rem;
+      background-color: $color-dark;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+      &.open {
+        display: flex;
+      }
+    }
+
+    .navbar__toggle {
       display: block;
+    }
+
+    .navbar__logo {
+      span {
+        font-size: 1.2rem;
+      }
     }
   }
 }

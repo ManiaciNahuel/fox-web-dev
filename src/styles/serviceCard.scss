@@ -1,18 +1,25 @@
 @use './variables' as *;
 
-
 .service-card {
-    background-color: #fff;
+    background-color: #fbfaf8eb;
     border-radius: 1rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     padding-top: 4rem;
     padding-bottom: 1rem;
     text-align: center;
     position: relative;
-    overflow: visible; // 👈 Esto permite que la imagen sobresalga
+    overflow: visible;
     width: 100%;
     max-width: 300px;
-    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
     &:hover {
         transform: translateY(-8px);
@@ -20,17 +27,15 @@
 
     .card-image-wrapper {
         position: absolute;
-        top: -90px; // ⬆️ Hace que la imagen sobresalga más
+        top: -90px;
         left: 50%;
         transform: translateX(-50%);
-        width: 150px; // ⬆️ Más grande
+        width: 150px;
         z-index: 2;
-        overflow: visible;
 
         .card-image {
             width: 105%;
             height: auto;
-
         }
     }
 
@@ -60,13 +65,74 @@
             font-weight: bold;
             font-size: 1rem;
             text-decoration: none;
-            margin: 1rem auto 0; // ⬅ esto lo centra
+            margin: 1rem auto 0;
+            display: block;
+            width: fit-content;
 
             &:hover {
                 background-color: $color-accent;
                 color: $color-dark;
             }
         }
+    }
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+    .service-card {
+        padding-top: 3.5rem;
+
+        .card-image-wrapper {
+            top: -70px;
+            width: 120px;
+
+            .card-image {
+                width: 100%;
+            }
+        }
+
+        .card-content {
+            padding: 0 1rem;
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            .service-button {
+                font-size: 0.95rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        padding-top: 2rem;
+
+        .card-image-wrapper {
+            top: -65px;
+            width: 110px;
+        }
+
+        .card-content {
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            .service-button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+                margin: 0 auto;
+            }
+        }
     }
 }

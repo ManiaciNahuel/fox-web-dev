@@ -1,61 +1,37 @@
+@use './variables' as *;
+
 .services-section {
-    padding: 1rem;
     text-align: center;
-    overflow: visible; // ✅ Agregalo si no está
-    position: relative; // ✅ Necesario para posicionamiento correcto
+    position: relative;
     z-index: 1;
 
-    .cards-container {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .service-card {
-        background: #fff;
-        border-radius: 1rem;
-        width: 300px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        box-shadow: 7px 7px 10px 3px rgba(246,81,29,0.56);
-
-        &:hover {
-            transform: translateY(-10px);
-            box-shadow: 7px 7px 10px 3px rgba(227,151,59,1);
-        }
-
-
-        .card-content {
-            height: 100%;
-            padding: .5rem .5rem 0rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-
-            h3 {
-                color: #1f1f1f;
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-                color: #555;
-                margin-bottom: 1rem;
-            }
-
-        }
+    h2 {
+        font-size: 2.5rem;
+        color: $color-primary;
+        margin-bottom: 2rem;
     }
 }
 
 .services-grid {
-    margin-top: 8rem;
+    margin-top: 7rem;
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    overflow: visible; // ✅ Este también puede estar limitando
+    overflow: visible;
     position: relative;
+    padding-bottom: 4rem; // espacio para evitar superposición con contacto
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+    .services-grid {
+        margin-top: 2rem;
+        gap: 6rem;
+        padding: 2rem 1rem 6rem;
+    }
+
+    .services-section {
+        padding: 1.5rem 1rem;
+    }
 }
