@@ -27,7 +27,7 @@ const About = () => {
             Desarrollamos webs desde cero, backend y frontend. Nos adaptamos a tus procesos, implementamos sistemas, automatizamos tareas con Python y armamos reportes potentes con Power BI.
           </p>
           <p>
-            Nos gusta estar cerca. Acompañamos a cada cliente desde el arranque hasta el resultado final. <em>¡Así trabajamos!</em>
+            Nos gusta estar cerca. Acompañamos a cada cliente desde el arranque hasta el resultado final. 
           </p>
         </div>
 
