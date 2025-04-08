@@ -17,7 +17,7 @@ const HeroFox = () => {
     }
 
     // Posición inicial desde la IZQUIERDA
-    const initialX = isMobile ? -1 : -12;
+    const initialX = isMobile ? 0 : -12;
     const initialZ = isMobile ? -1 : 5;
     const initialY = isMobile ? -4 : -0.2;
 
@@ -39,7 +39,7 @@ const HeroFox = () => {
       group.current.position.z -= speed * 0.5;
 
       // Condición para que desaparezca (más a la derecha)
-      const exitX = isMobile ? -1 : 14;
+      const exitX = isMobile ? 0 : 14;
       const exitZ = isMobile ? -1 : 1;
 
       if (
@@ -54,7 +54,7 @@ const HeroFox = () => {
   return (
     <group
       ref={group}
-      scale={[1, 1, 1]}
+      scale={isMobile ? [0.7, 0.7, 0.7] : [1, 1, 1]}
       position={[-12, -0.2, 5]} // Izquierda, más abajo
       rotation={[0, Math.PI / 4, 0]} // Mira a la derecha ahora
     >
