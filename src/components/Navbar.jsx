@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/navbar.scss';
 
 const Navbar = () => {
@@ -7,17 +8,21 @@ const Navbar = () => {
   const handleToggle = () => setMenuOpen(!menuOpen);
   const handleLinkClick = () => setMenuOpen(false);
 
+
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <div className="navbar__logo">
+        <Link to="/" className="navbar__logo" onClick={handleLinkClick}>
           🦊 <span>Fox Web Dev</span>
-        </div>
+        </Link>
 
         <div className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-          <a href="#about" onClick={handleLinkClick}>Nosotros</a>
-          <a href="#services" onClick={handleLinkClick}>Servicios</a>
-          <a href="#contact" onClick={handleLinkClick}>Contacto</a>
+          <>
+            <a href="#about" onClick={handleLinkClick}>Nosotros</a>
+            <a href="#services" onClick={handleLinkClick}>Servicios</a>
+            <a href="#contact" onClick={handleLinkClick}>Contacto</a>
+          </>
+
         </div>
 
         <div className="navbar__toggle" onClick={handleToggle}>
