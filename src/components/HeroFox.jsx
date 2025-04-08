@@ -3,57 +3,64 @@ import { useGLTF, useAnimations } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 
 const HeroFox = () => {
-    const group = useRef();
-    const { scene, animations } = useGLTF('/models/fox_multi.glb');
-    const { actions } = useAnimations(animations, group);
-    const alreadyGone = useRef(false);
-    const cooldown = useRef(0);
+  const group = useRef();
+  const { scene, animations } = useGLTF('/models/fox_multi.glb');
+  const { actions } = useAnimations(animations, group);
+  const alreadyGone = useRef(false);
 
-    const startRunning = () => {
-        const action = actions['hit'];
-        if (action) {
-            action.reset().fadeIn(0.5).play();
-        }
+  const isMobile = window.innerWidth <= 768;
 
-        // Reiniciar posición
-        if (group.current) {
-            group.current.position.set(14, 1, 6); // posición inicial
-        }
+  const startRunning = () => {
+    const action = actions['hit'];
+    if (action) {
+      action.reset().fadeIn(0.5).play();
+    }
 
-        alreadyGone.current = false;
-    };
+    // Posición inicial desde la IZQUIERDA
+    const initialX = isMobile ? -1 : -12;
+    const initialZ = isMobile ? -1 : 5;
+    const initialY = isMobile ? -4 : -0.2;
 
-    useEffect(() => {
-        startRunning();
-    }, [actions]);
+    if (group.current) {
+      group.current.position.set(initialX, initialY, initialZ);
+    }
 
-    useFrame(() => {
-        if (group.current && !alreadyGone.current) {
-            const speed = 0.08;
-            group.current.position.z -= speed * 1;
-            group.current.position.x -= speed * 1;
+    alreadyGone.current = false;
+  };
 
-            // 🔥 NUEVA CONDICIÓN DE ESCAPE
-            if (
-                group.current.position.x < -10 &&  // se fue bien a la izquierda
-                group.current.position.z < -3      // ya no se ve más en profundidad
-            ) {
-                alreadyGone.current = true;
-            }
-        }
-    });
+  useEffect(() => {
+    startRunning();
+  }, [actions]);
 
+  useFrame(() => {
+    if (group.current && !alreadyGone.current) {
+      const speed = 0.08;
+      group.current.position.x += speed;
+      group.current.position.z -= speed * 0.5;
 
-    return (
-        <group
-            ref={group}
-            scale={[1, 1, 1]}
-            position={[14, 1, 6]}
-            rotation={[0, -Math.PI / 4, 0]}
-        >
-            <primitive object={scene} />
-        </group>
-    );
+      // Condición para que desaparezca (más a la derecha)
+      const exitX = isMobile ? -1 : 14;
+      const exitZ = isMobile ? -1 : 1;
+
+      if (
+        group.current.position.x > exitX &&
+        group.current.position.z < exitZ
+      ) {
+        alreadyGone.current = true;
+      }
+    }
+  });
+
+  return (
+    <group
+      ref={group}
+      scale={[1, 1, 1]}
+      position={[-12, -0.2, 5]} // Izquierda, más abajo
+      rotation={[0, Math.PI / 4, 0]} // Mira a la derecha ahora
+    >
+      <primitive object={scene} />
+    </group>
+  );
 };
 
 export default HeroFox;
