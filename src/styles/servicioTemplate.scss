@@ -1,57 +1,110 @@
 @use './variables' as *;
 
 .servicio-template {
+  background-color: $color-dark;
+  color: $color-light;
   padding: 4rem 1rem;
-  text-align: center;
+  min-height: 100vh;
+  overflow-y: auto;
 
   h2 {
-    font-size: 2.5rem;
     color: $color-primary;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
   .sub {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
     color: $color-light;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   .intro {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
 
     .imagen-principal {
-      width: 180px;
-      margin-bottom: 1.5rem;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .descripcion {
-      max-width: 600px;
-      color: $color-light;
+      flex: 1;
       font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
     }
   }
 
   .bloques {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
 
     .bloque {
       background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
+      border-radius: 1rem;
       padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
       h3 {
         color: $color-primary;
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.4rem;
       }
 
       p {
-        color: $color-light;
         font-size: 1rem;
+        color: $color-light;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .servicio-template {
+    padding: 2rem 1rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .sub {
+      font-size: 1rem;
+    }
+
+    .intro {
+      flex-direction: column;
+
+      .descripcion {
+        font-size: 1rem;
+        text-align: center;
+      }
+    }
+
+    .bloques {
+      grid-template-columns: 1fr;
+
+      .bloque {
+        padding: 1.2rem;
+
+        h3 {
+          font-size: 1.2rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
       }
     }
   }
